@@ -41,7 +41,7 @@ class FolderController extends Controller
         $folder->title = $request->title;
         $folder->save();
 
-        return redirect('/home')->with('folders_flash_message', 'フォルダを作成しました。');
+        return redirect('/index')->with('folders_flash_message', 'フォルダを作成しました。');
     }
 
 
@@ -54,7 +54,7 @@ class FolderController extends Controller
         $todos = Todo::where('folder_id', '=', $id);
         $todos->delete();
 
-        return redirect('/home')->with('folders_flash_message', 'フォルダを削除しました。');
+        return redirect('/index')->with('folders_flash_message', 'フォルダを削除しました。');
 
     }
 

@@ -27,7 +27,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 
   Route::get('/', [ToDoController::class, 'index']);
 
-  Route::get('/home', [ToDoController::class, 'index'])->name('index');
+  Route::get('/index', [ToDoController::class, 'index'])->name('index');
   Route::get('/folders/{id}/todos', [ToDoController::class, 'selectFolders'])->name('select_folders');
 
   //Folders

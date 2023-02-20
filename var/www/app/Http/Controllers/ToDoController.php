@@ -28,13 +28,13 @@ class ToDoController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    //Home
+    //index
     public function index()
     {  
 
         $folders = Folder::where('user_id', '=', Auth::id())->get();
 
-        return view('home', [
+        return view('index', [
             'folders' => $folders,
         ]);
     }
@@ -48,7 +48,7 @@ class ToDoController extends Controller
         $current_folder_id = $folders_id->id;
         $todos = Todo::where('folder_id', '=', $current_folder_id)->get();
 
-        return view('home', [
+        return view('index', [
             'folders' => $folders,
             'current_folder_id' => $id,
             'todos' => $todos,
@@ -84,7 +84,7 @@ class ToDoController extends Controller
         $todos->due_date = $request->due_date;
         $todos->save();
 
-        return redirect('/home')->with('flash_message', 'タスクを登録しました。');
+        return redirect('/index')->with('flash_message', 'タスクを登録しました。');
     }
 
     public function showEditForm($id) {
@@ -113,7 +113,7 @@ class ToDoController extends Controller
         $todos = Todo::find($id);
         $todos->fill($inputs)->save();
 
-        return redirect('/home')->with('flash_message', 'タスクを編集しました。');
+        return redirect('/index')->with('flash_message', 'タスクを編集しました。');
     }
 
     public function delete($id)
@@ -121,7 +121,7 @@ class ToDoController extends Controller
         $todos = Todo::find($id);
         $todos->delete();
 
-         return redirect('/home')->with('flash_message', 'タスクを削除しました。');
+         return redirect('/index')->with('flash_message', 'タスクを削除しました。');
     }
 
 }
